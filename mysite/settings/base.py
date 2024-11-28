@@ -97,7 +97,7 @@ if DEVELOPMENT_MODE is True:
         }
     }
 elif len(sys.argv) > 1 and sys.argv[1] != 'collectstatic':
-    if not os.getenv("DATABASE_URL")
+    if not os.getenv("DATABASE_URL"):
         raise Exception("DATABASE_URL environment variable not defined")
     DATABASES = {
         "default": dj_database_url.parse(os.getenv("DATABASE_URL")),
