@@ -96,7 +96,7 @@ if DEVELOPMENT_MODE is True:
             "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
         }
     }
-elif len(sys.argv) > 0 and sys.argv[1] != 'collectstatic':
+elif len(sys.argv) > 1 and sys.argv[1] != 'collectstatic':
     if os.getenv("DATABASE_URL", None) is None:
         raise Exception("DATABASE_URL environment variable not defined")
     DATABASES = {
@@ -166,11 +166,23 @@ STORAGES = {
         "BACKEND": "django.contrib.staticfiles.storage.ManifestStaticFilesStorage",
     },
 }
-
-
+'''
+STORAGES = {
+    "default": {
+        "BACKEND": "storages.backends.s3.S3Storage",
+        "OPTIONS": {
+            region_name = os.getenv("region_name")
+            endpoint_url = "https://${region_name}.digitaloceanspaces.com"
+            # endpoint_url = "https://fomizzle.sfo3.digitaloceanspaces.com"
+            access_key = os.getenv("access_key")
+            secret_key = os.getenv("secret_key")
+        },
+    },
+}
+'''
 # Wagtail settings
 
-WAGTAIL_SITE_NAME = "mysite"
+WAGTAIL_SITE_NAME = "Ryan Bradon"
 
 # Search
 # https://docs.wagtail.org/en/stable/topics/search/backends.html
