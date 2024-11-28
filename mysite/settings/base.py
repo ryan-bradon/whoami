@@ -97,10 +97,10 @@ if DEVELOPMENT_MODE is True:
         }
     }
 elif len(sys.argv) > 1 and sys.argv[1] != 'collectstatic':
-    if os.getenv("DATABASE_URL", None) is None:
+    if not os.getenv("DATABASE_URL")
         raise Exception("DATABASE_URL environment variable not defined")
     DATABASES = {
-        "default": dj_database_url.parse(os.environ.get("DATABASE_URL")),
+        "default": dj_database_url.parse(os.getenv("DATABASE_URL")),
     }
 
 # Password validation
